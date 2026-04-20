@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+:root {
+  --bg-base: #121212;
+  --bg-highlight: #1a1a1a;
+  --bg-press: #000;
+  --bg-elevated-base: #242424;
+  --bg-elevated-highlight: #2a2a2a;
+  --bg-elevated-press: #000;
+  
+  --text-base: #ffffff;
+  --text-subdued: #a7a7a7;
+  
+  --essential-base: #ffffff;
+  --essential-subdued: #727272;
+  --essential-bright-accent: #1ed760;
+  --essential-positive: #1ed760;
+  --essential-warning: #ffa42b;
+  --essential-negative: #e22134;
+
+  --sidebar-width: 250px;
+  --player-height: 90px;
+  --header-height: 64px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-press);
+  color: var(--text-base);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* App Layout Grid */
+.app-layout {
+  display: grid;
+  grid-template-areas:
+    "sidebar main-view"
+    "player player";
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: 1fr var(--player-height);
+  height: 100vh;
+  width: 100vw;
+  gap: 8px;
+  padding: 8px;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--bg-base);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  overflow-y: auto;
+}
+
+.main-view {
+  grid-area: main-view;
+  background-color: var(--bg-base);
+  border-radius: 8px;
+  position: relative;
+  overflow-y: auto;
+  background: linear-gradient(180deg, #2a2a2a 0%, var(--bg-base) 300px);
+}
+
+.player-bar {
+  grid-area: player;
+  background-color: var(--bg-base);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+/* Spotify Header Components */
+.header {
+  position: sticky;
+  top: 0;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  z-index: 10;
+  background: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 8px 8px 0 0;
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-buttons button {
+  background-color: rgba(0,0,0,0.7);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: var(--text-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-buttons button:hover {
+  background-color: rgba(0,0,0,0.9);
+  transform: scale(1.05);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-elevated-base);
+  border-radius: 500px;
+  padding: 8px 16px;
+  width: 350px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.search-box:hover, .search-box:focus-within {
+  border-color: #333;
+  background-color: var(--bg-elevated-highlight);
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  color: white;
+  margin-left: 8px;
+  width: 100%;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Typography & Content */
+.content-area {
+  padding: 24px;
+}
+
+h1.greeting {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.04em;
+}
+
+/* Card Grid Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+}
+
+/* Shared utility classes */
+.btn-primary {
+  background-color: white;
+  color: black;
+  border-radius: 500px;
+  padding: 8px 32px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.04);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.5);
+}
+
+/* Horizontal Carousel Layout */
+.carousel-container {
+  width: 100%;
+  overflow-x: auto;
+  position: relative;
+  padding-bottom: 24px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  padding-right: 32px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 24px;
+}
+
+.carousel-track .song-card {
+  width: 180px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}

@@ -1,0 +1,19 @@
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# Python Environments
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# IDEs
+.vscode/
+.idea/
+
+# Testing/Logs
+*.log
+*.sqlite3
